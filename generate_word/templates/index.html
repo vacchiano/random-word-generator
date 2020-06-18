@@ -4,8 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎲 Random Word</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1>Random Word Generator</h1>
+    <div class="container">
+        <h1>Random Word Generator</h1>
+        <p>Attempt Number: {{ request.session.count }}</p>
+        <h3>{{ request.session.word }}</h3>
+        <form action="/random_word" method="POST">
+            {% csrf_token %}
+            <button formaction="/random_word">Generate</button>
+            <button formaction="/reset">Reset</button>
+        </form>
+    </div>
 </body>
 </html>
